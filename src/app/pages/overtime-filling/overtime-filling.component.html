@@ -1,0 +1,51 @@
+<article>
+    <h2>取样环测组加班申请</h2>
+    <form [formGroup]="form" (submit)="handleSubmit()">
+        <mat-form-field appearance="standard">
+            <mat-label>工号</mat-label>
+            <input matInput type="text" placeholder="请输入工号" formControlName="id">
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>加班日期</mat-label>
+            <input matInput [matDatepicker]="attendanceDatePicker" placeholder="请输入加班日期" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="attendanceDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #attendanceDatePicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>加班开始时间</mat-label>
+            <input type="time" matInput placeholder="开始时间" formControlName="startTime">
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>加班结束时间</mat-label>
+            <input type="time" matInput placeholder="开始时间" formControlName="endTime">
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>休息开始时间</mat-label>
+            <input type="time" matInput placeholder="开始时间" formControlName="restStartTime">
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>休息结束时间</mat-label>
+            <input type="time" matInput placeholder="开始时间" formControlName="restEndTime">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>加班报酬类型</mat-label>
+            <mat-select formControlName="payType">
+                <mat-option [value]="1">支付加班费</mat-option>
+                <mat-option [value]="2">用于调休</mat-option>
+                <mat-option [value]="3">仅记录</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>在公司加班</mat-label>
+            <mat-select formControlName="inCompany">
+                <mat-option [value]="true">是</mat-option>
+                <mat-option [value]="false">否</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>加班事由</mat-label>
+            <textarea matInput rows="5" placeholder="请输入加班事由" formControlName="reason"></textarea>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary">发送</button>
+    </form>
+</article>
