@@ -10,14 +10,14 @@ export class ApplicationService {
   constructor(private http: HttpClient) { }
 
   createApplication(application: any) {
-    return this.http.post('http://localhost:3000/create-application', application);
+    return this.http.post('http://www.cnbebop.com:3000/create-application', application);
   }
 
   getApplicationList() {
-    return this.http.get('http://localhost:3000/query-applications');
+    return this.http.get('http://www.cnbebop.com:3000/query-applications');
   }
 
   getUserList() {
-    return this.http.get<User[]>('http://localhost:3000/query-users');
+    return this.http.get<User[]>('http://www.cnbebop.com:3000/query-users');
   }
 }

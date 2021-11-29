@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get<User[]>('http://localhost:3000').subscribe(response => {
+    this.http.get<User[]>('http://www.cnbebop.com:3000').subscribe(response => {
       console.log(response)
       this.userList = response;
     });
