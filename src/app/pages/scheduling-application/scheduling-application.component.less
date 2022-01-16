@@ -1,0 +1,25 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-title {
+  margin: unset;
+}
+
+.plan-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+
+  .plan-item {
+    display: flex;
+    column-gap: 40px;
+    align-items: center;
+
+    :last-child {
+      flex: 1;
+    }
+  }
+}

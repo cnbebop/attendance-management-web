@@ -1,5 +1,5 @@
-<article>
-    <h2>取样环测组加班申请</h2>
+<h2 mat-dialog-title>加班申请</h2>
+<mat-dialog-content>
     <form [formGroup]="form" (submit)="handleSubmit()">
         <mat-form-field appearance="standard">
             <mat-label>工号</mat-label>
@@ -13,19 +13,31 @@
         </mat-form-field>
         <mat-form-field appearance="standard">
             <mat-label>加班开始时间</mat-label>
-            <input type="time" matInput placeholder="开始时间" formControlName="startTime">
+            <input matInput [ngxMatTimepicker]="startTimePicker" [format]="24" placeholder="开始时间"
+                formControlName="startTime" readonly>
+            <ngx-mat-timepicker-toggle matSuffix [for]="startTimePicker"></ngx-mat-timepicker-toggle>
+            <ngx-mat-timepicker #startTimePicker></ngx-mat-timepicker>
         </mat-form-field>
         <mat-form-field appearance="standard">
             <mat-label>加班结束时间</mat-label>
-            <input type="time" matInput placeholder="开始时间" formControlName="endTime">
+            <input matInput [ngxMatTimepicker]="endTimePicker" [format]="24" placeholder="结束时间"
+                formControlName="endTime" readonly>
+            <ngx-mat-timepicker-toggle matSuffix [for]="endTimePicker"></ngx-mat-timepicker-toggle>
+            <ngx-mat-timepicker #endTimePicker></ngx-mat-timepicker>
         </mat-form-field>
         <mat-form-field appearance="standard">
             <mat-label>休息开始时间</mat-label>
-            <input type="time" matInput placeholder="开始时间" formControlName="restStartTime">
+            <input matInput [ngxMatTimepicker]="restStartTimePicker" [format]="24" placeholder="开始时间"
+                formControlName="restStartTime" readonly>
+            <ngx-mat-timepicker-toggle matSuffix [for]="restStartTimePicker"></ngx-mat-timepicker-toggle>
+            <ngx-mat-timepicker #restStartTimePicker></ngx-mat-timepicker>
         </mat-form-field>
         <mat-form-field appearance="standard">
             <mat-label>休息结束时间</mat-label>
-            <input type="time" matInput placeholder="开始时间" formControlName="restEndTime">
+            <input matInput [ngxMatTimepicker]="restEndTimePicker" [format]="24" placeholder="开始时间"
+                formControlName="restEndTime" readonly>
+            <ngx-mat-timepicker-toggle matSuffix [for]="restEndTimePicker"></ngx-mat-timepicker-toggle>
+            <ngx-mat-timepicker #restEndTimePicker></ngx-mat-timepicker>
         </mat-form-field>
         <mat-form-field>
             <mat-label>加班报酬类型</mat-label>
@@ -48,4 +60,4 @@
         </mat-form-field>
         <button type="submit" mat-raised-button color="primary">发送</button>
     </form>
-</article>
+</mat-dialog-content>

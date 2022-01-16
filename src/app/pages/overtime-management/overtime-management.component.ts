@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { format, parse } from 'date-fns';
 import { TableColumnType } from 'src/app/shared/models/table-column.model';
 import { User } from 'src/app/user.model';
 import { utils, WorkBook, WorkSheet, writeFile } from 'xlsx';
 import { ApplicationService } from '../overtime-filling/application.service';
+import { OvertimeFillingComponent } from '../overtime-filling/overtime-filling.component';
 
 @Component({
   selector: 'app-overtime-management',
@@ -19,6 +21,7 @@ export class OvertimeManagementComponent implements OnInit {
     {
       title: '姓名',
       dataIndex: 'name',
+      sticky: true,
       render: (value, record) =>
         this.userList.find((user) => user.id === record.id)?.name,
     },
@@ -122,9 +125,16 @@ export class OvertimeManagementComponent implements OnInit {
 
   private userList: User[] = [];
 
-  constructor(private applicationService: ApplicationService) {}
+  constructor(
+    private applicationService: ApplicationService,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  loadData(): void {
     this.applicationService
       .getUserList()
       .subscribe((response) => (this.userList = response));
@@ -151,5 +161,27 @@ export class OvertimeManagementComponent implements OnInit {
       )
     );
     return [header, ...tableValue];
+  }
+
+  application() {
+    const dialogRef = this.dialog.open(OvertimeFillingComponent,{
+      width: '400px',
+      maxWidth: '90vw',
+      minWidth: 200,
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadData();
+    });
+  }
+
+  getDisplayedTableColumns(columns: any[]) {
+    return columns.concat('operation');
+  }
+
+  deleteApplication(record: any) {
+    console.log('record', record)
+    return this.applicationService.deleteApplication(record._id).subscribe(() => {
+      this.loadData();
+    });
   }
 }

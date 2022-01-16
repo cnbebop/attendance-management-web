@@ -1,3 +1,20 @@
-.overtime-table {
-    width: 100%;
+.overtime-management {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .table-container {
+        width: 100%;
+        overflow: auto;
+        flex: 1;
+        min-height: 0;
+    }
+    
+    .overtime-table {
+        width: 100%;
+    
+        td {
+            min-width: 100px;
+        }
+    }
 }

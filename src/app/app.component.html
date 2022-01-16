@@ -1,1 +1,19 @@
+<article class="app-root">
+    <mat-toolbar color="primary">
+        <button mat-icon-button >
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>取样环测组管理系统</span>
+    </mat-toolbar>
+    
+    <mat-tab-group class="app-content">
+        <mat-tab label="加班">
+            <app-overtime-management></app-overtime-management>
+        </mat-tab>
+        <mat-tab label="排班">
+            <app-scheduling-management></app-scheduling-management>
+        </mat-tab>
+    </mat-tab-group>
+</article>
+
 <router-outlet></router-outlet>

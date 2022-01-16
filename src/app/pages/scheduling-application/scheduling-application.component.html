@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>排班申请</h2>
+<mat-dialog-content>
+    <form [formGroup]="applicationForm" (submit)="handleSubmit()">
+        <h4 class="field-title">申请人</h4>
+        <mat-form-field appearance="standard">
+            <input matInput type="text" placeholder="请输入工号" formControlName="userId">
+        </mat-form-field>
+        <h4 class="field-title">排班周期</h4>
+        <mat-form-field appearance="standard" (click)="picker.open()">
+            <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="开始时间" readonly formControlName="startTime">
+                <input #startTime matEndDate placeholder="结束时间" readonly formControlName="endTime" (dateChange)="onDateChange($event)">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+        <h4 class="field-title">排班计划</h4>
+        <ul class="plan-list" formGroupName="plans">
+            <li class="plan-item" *ngFor="let plan of planFormArray.controls; let index = index"
+                [formGroupName]="index">
+                <mat-checkbox class="checkbox" color="primary" formControlName="work">
+                    {{plan.value.date}}
+                    {{plan.value.week}}
+                </mat-checkbox>
+                <mat-form-field>
+                    <mat-label>班次</mat-label>
+                    <mat-select formControlName="type">
+                        <mat-option [value]="'D1'">常白班(08:30-17:00)</mat-option>
+                        <mat-option [value]="'Z07'">早班(05:30-14:00)</mat-option>
+                        <mat-option [value]="'Z05'">早班(06:30-15:00)</mat-option>
+                        <mat-option [value]="'Z01'">下午班(12:30-20:30)</mat-option>
+                        <mat-option [value]="'Z02'">小夜班(17:30-01:00)</mat-option>
+                        <mat-option [value]="'Z03'">大夜班(20:30-04:00)</mat-option>
+                        <mat-option [value]="'Z04'">凌晨班(00:00-07:30)</mat-option>
+                        <mat-option [value]="'Z06'">凌晨班(01:00-08:30)</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </li>
+        </ul>
+        <button type="submit" mat-raised-button color="primary">发送</button>
+    </form>
+</mat-dialog-content>

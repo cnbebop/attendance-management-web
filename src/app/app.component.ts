@@ -12,14 +12,8 @@ export class AppComponent implements OnInit {
   title = 'attendance-management';
   displayedColumns: string[] = ['id', 'name'];
 
-  userList: User[] = [];
-
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get<User[]>('http://www.cnbebop.com:3000').subscribe(response => {
-      console.log(response)
-      this.userList = response;
-    });
   }
 }

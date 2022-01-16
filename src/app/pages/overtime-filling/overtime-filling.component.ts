@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { format } from 'date-fns';
 import { ApplicationService } from './application.service';
 
@@ -22,19 +24,27 @@ export class OvertimeFillingComponent implements OnInit {
     reason: new FormControl(null),
   });
 
-  constructor(private applicationService: ApplicationService) { }
+  constructor(
+    private applicationService: ApplicationService,
+    private dialogRef: MatDialogRef<OvertimeFillingComponent>,
+    private snakeBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
   }
 
   handleSubmit() {
-    console.log(this.form.value)
     const { date, ...rest } = this.form.value;
     this.applicationService.createApplication({
       date: date ? format(new Date(date), 'yyyy-MM-dd') : null,
       ...rest,
     }).subscribe(response => {
-      alert('发送成功');
+      this.dialogRef.close();
+      this.snakeBar.open('发送成功', undefined, {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
     });
   }
 }
