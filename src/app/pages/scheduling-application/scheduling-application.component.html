@@ -26,13 +26,14 @@
                     <mat-label>班次</mat-label>
                     <mat-select formControlName="type">
                         <mat-option [value]="'D1'">常白班(08:30-17:00)</mat-option>
-                        <mat-option [value]="'Z07'">早班(05:30-14:00)</mat-option>
                         <mat-option [value]="'Z05'">早班(06:30-15:00)</mat-option>
+                        <mat-option [value]="'Z08'">早班(7:00-15:30)</mat-option>
                         <mat-option [value]="'Z01'">下午班(12:30-20:30)</mat-option>
+                        <mat-option [value]="'Z06'">下午班(13:00-21:00)</mat-option>
+                        <mat-option [value]="'Z07'">下午班(15:00-23:00)</mat-option>
                         <mat-option [value]="'Z02'">小夜班(17:30-01:00)</mat-option>
                         <mat-option [value]="'Z03'">大夜班(20:30-04:00)</mat-option>
                         <mat-option [value]="'Z04'">凌晨班(00:00-07:30)</mat-option>
-                        <mat-option [value]="'Z06'">凌晨班(01:00-08:30)</mat-option>
                     </mat-select>
                 </mat-form-field>
             </li>

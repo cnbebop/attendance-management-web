@@ -1,9 +1,9 @@
 <button mat-raised-button color="primary" (click)="application()" style="margin: 10px;">排班申请</button>
 <button mat-raised-button (click)="exportAll()" style="margin: 10px;">导出所有</button>
-<mat-button-toggle-group [(value)]="viewType" appearance="legacy" (change)="onViewChange($event)">
+<!-- <mat-button-toggle-group [(value)]="viewType" appearance="legacy" (change)="onViewChange($event)">
     <mat-button-toggle value="weekly">周视图</mat-button-toggle>
     <mat-button-toggle value="monthly">月视图</mat-button-toggle>
-</mat-button-toggle-group>
+</mat-button-toggle-group> -->
 
 <div class="table-container">
     <table mat-table class="overtime-table" [dataSource]="dataSource">

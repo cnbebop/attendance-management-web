@@ -15,7 +15,7 @@ import { SchedulingApplicationComponent } from '../scheduling-application/schedu
 })
 export class SchedulingManagementComponent implements OnInit {
   public dayNames = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-  public viewType: "weekly" | "monthly" = "weekly";
+  public viewType: "weekly" | "monthly" = "monthly";
 
   public columns: TableColumnType[] = [
     {

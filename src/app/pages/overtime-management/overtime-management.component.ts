@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { format, parse } from 'date-fns';
 import { TableColumnType } from 'src/app/shared/models/table-column.model';
 import { User } from 'src/app/user.model';
@@ -125,9 +126,12 @@ export class OvertimeManagementComponent implements OnInit {
 
   private userList: User[] = [];
 
+  @ViewChild('deleteConfirm') public deleteConfirm!: TemplateRef<any>;
+
   constructor(
     private applicationService: ApplicationService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snakeBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -178,10 +182,18 @@ export class OvertimeManagementComponent implements OnInit {
     return columns.concat('operation');
   }
 
+  confirmDelete(record: any) {
+    this.dialog.open(this.deleteConfirm, { data: record });
+  }
+
   deleteApplication(record: any) {
-    console.log('record', record)
     return this.applicationService.deleteApplication(record._id).subscribe(() => {
       this.loadData();
+      this.snakeBar.open('删除成功', undefined, {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
     });
   }
 }
